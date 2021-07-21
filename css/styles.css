@@ -34,6 +34,7 @@ body{
 }
 
 .box-search-user, .box-user{
+    zoom: 1.5;
     position: relative;
     width: 375px;
     height: 585px;
@@ -68,6 +69,7 @@ body{
 
 .body-search-user{
     margin-top: 80px;
+    position: relative;
 }
 
 .body-search-user h1, p{
@@ -116,7 +118,7 @@ body{
 .body-search-user button p::before{
     content: url(../assets/bx-search.svg);
     position: absolute;
-    left: 90px;
+    left: 65px;
 }
 
 .footer-search-user{
@@ -270,14 +272,17 @@ body{
     background-color: #FDECEF;
 }
 
-.box-repository p{
+.box-repository a{
     line-height: 37px;
     text-align: left;
     position: relative;
     padding-left: 40px;
+    text-decoration: none;
+    color: #404040;
+    display: block;
 }
 
-.box-repository p::before{
+.box-repository a::before{
     display: inline-block;
     content: url(../assets/projectfork.svg);
     width: 20px;
@@ -298,4 +303,15 @@ body{
     width: 17px !important;
     height: 17px !important;
     margin-right: 15px;
+}
+
+.error-msg{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: -45px;
+    background-color: #f1787a;
+    font-size: 9px !important;
+    border-radius: 10px;
+    padding: 10px;
 }
