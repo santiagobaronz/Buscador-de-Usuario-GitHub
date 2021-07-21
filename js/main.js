@@ -16,6 +16,9 @@ window.addEventListener("load", function(){
         user_desc = document.querySelector("#user_desc"),
         user_location = document.querySelector("#user_location"),
         user_email = document.querySelector("#user_email"),
+        user_social_media_box = document.querySelector("#user_social_media"),
+        user_twitter = document.querySelector("#twitter"),
+        user_blog = document.querySelector("#blog"),
 
         repositories = document.querySelector("#repositories"),
         followers = document.querySelector("#followers"),
@@ -31,9 +34,6 @@ window.addEventListener("load", function(){
         var input_search = document.querySelector("#input_search").value;
 
         if(input_search != ''){
-            container_search.style.display = "none";
-            container_user.style.display = "block";
-
             var URL_GitHub = "https://api.github.com/users/";
 
             var UserInfo;
@@ -50,15 +50,38 @@ window.addEventListener("load", function(){
                     user_desc.innerHTML = UserInfo.bio;
 
                     if(UserInfo.location != null){
+                        user_location.style.display = 'block';
                         user_location.innerHTML = UserInfo.location;
                     }else{
                         user_location.style.display = 'none';
                     }
 
                     if(UserInfo.email != null){
+                        user_email.style.display = 'block';
                         user_email.innerHTML = UserInfo.email;
                     }else{
                         user_email.style.display = 'none';
+                    }
+
+                    user_twitter.href = "https://twitter.com/" + UserInfo.twitter_username;
+                    user_blog.href = UserInfo.blog;
+
+                    if(UserInfo.blog == "" && UserInfo.twitter_username == null){
+                        user_social_media_box.style.display = "none";
+
+                    }else if(UserInfo.blog != "" && UserInfo.twitter_username == null){
+                        user_social_media_box.style.display = "block";
+                        user_blog.style.display = "inline-block";
+                        user_twitter.style.display = "none";
+                        
+                    }else if(UserInfo.twitter_username != null && UserInfo.blog == ""){
+                        user_social_media_box.style.display = "block";
+                        user_twitter.style.display = "inline-block";
+                        user_blog.style.display = "none";
+                    }else{
+                        user_social_media_box.style.display = "block";
+                        user_twitter.style.display = "inline-block";
+                        user_blog.style.display = "inline-block";
                     }
 
                     // Cambio de datos en las estadisticas
@@ -91,15 +114,16 @@ window.addEventListener("load", function(){
                             repository2.innerHTML = Repos[1].name;
                             repository3.innerHTML = Repos[2].name;
 
-                            
+                            //Cambio de pantalla
+
+                            container_search.style.display = "none";
+                            container_user.style.display = "block";
 
                     });
                 }   
             );
         }
     });
-
-
 
     arrow_button.addEventListener("click", function(){
             container_search.style.display = "block";
